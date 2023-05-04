@@ -1,0 +1,376 @@
+
+html, body, div {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+html, body {
+    /*background-color: #000000;*/
+    height: 100%;
+    font-family: Trebuchet, Verdana, sans-serif;
+    font-size: 9pt;
+    color: white;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+img {
+    vertical-align: top;
+}
+
+
+#pageWrapper {
+    /*background-color: brown;*/
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: cover;
+
+    user-select: none;
+}
+
+
+
+
+/* --- Main grid -------------------------------------------------------------------------------------------------- */
+
+.guiContainer {
+    background-color: #000000;
+    position: relative;
+    width: 504px; /* Width of GUI. 504px gives perfect square .dieWrapper. */
+    height: auto; /* Height of GUI is defined by template rows in this class. */
+
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -30px -105px; /* -75px -80px */
+    border: 1px solid #000000;
+    box-shadow: 15px 20px 20px 5px rgba(0, 0, 0, .50);
+    padding: 15px; /* Distance from edge of container to border of diceContainer and scoreContainer. */
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 160px 450px; /* DEFINES HEIGHT OF GUI WINDOW. */
+    grid-template-areas:
+        "diceContainer"
+        "scoreContainer";
+}
+
+/**
+Used when displaying game over prompt.
+ */
+#guiOverlay {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* We'll transition to semi-transparant on display of game-over prompt. */
+    transition: opacity 600ms ease 0ms;
+    z-index: 1;
+}
+
+.diceContainer, .scoreContainer {
+    padding: 10px 15px; /* Distance from border to content */
+    border: 1px solid #000000;
+}
+
+.diceContainer {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px; /* Vertical distance between diceContainer and scoreContainer */
+}
+
+.rollControl {
+    margin: 0px 5px;
+
+}
+
+/* --- Dice Container ------------------------------------------------------------------------------------------------*/
+
+/**
+Holds dices and roll controls.
+ */
+.diceContainer {
+    /*background-color: blue;*/
+    grid-area: diceContainer;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 80px auto;
+    grid-template-areas:
+        "dieCol1 dieCol2 dieCol3 dieCol4 dieCol5"
+        "rollCtrl rollCtrl rollCtrl rollCtrl rollCtrl";
+}
+
+/**
+Dice image wrappers.
+ */
+.dieWrapper {
+    /*background-color: coral;*/
+    width: auto;
+    border: 2px ridge transparent;
+    border-radius: 7px;
+    /*border-color: yellow;*/
+    text-align: center;
+    font-size: 0px;
+    white-space: nowrap;
+    margin: 0px 5px; /* Horizontal distance between dice wrappers. */
+    padding: 10px; /* Distance between hold-border and die images. */
+}
+
+.dieWrapper.hold {
+    border-color: rgb(34, 113, 255);
+}
+
+/**
+Pseudo-element that vertically centers image element.
+*/
+.dieWrapper::before {
+    content: '';
+    display: inline-block;
+    width: 0px;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.dieCol1 {
+    grid-area: dieCol1;
+}
+
+.dieCol2 {
+    grid-area: dieCol2;
+}
+
+.dieCol3 {
+    grid-area: dieCol3;
+}
+
+.dieCol4 {
+    grid-area: dieCol4;
+}
+
+.dieCol5 {
+    grid-area: dieCol5;
+}
+
+/* --- Die images --- */
+.diceContainer img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    border: 0;
+    cursor: pointer;
+}
+
+/* --- Roll Control ----------------------------------- */
+
+/**
+Defines grid for roll control.
+ */
+.rollControl {
+    /*background-color: magenta;*/
+    grid-area: rollCtrl;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 250px auto 120px;
+    grid-template-areas:
+        "rollCol1 rollCol2 rollCol3";
+}
+
+/* Roll columns */
+.rollControl * {
+    display: flex;
+    align-items: end;
+    border: 0px solid yellow;
+    font-size: 10pt;
+}
+
+.rollCol1 {
+    grid-area: rollCol1;
+    justify-content: right;
+    padding-right: 10px;
+}
+
+.rollCol2 {
+    grid-area: rollCol2;
+}
+
+.rollCol3 {
+    grid-area: rollCol3;
+    padding-right: 30px;
+}
+
+button {
+    width: 100%;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    margin: 0;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+
+}
+
+button:hover, button:focus {
+    border-color: rgba(0, 0, 255, 0.55);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+button:active {
+    background-color: #F0F0E9;
+    border-color: rgba(0, 0, 255, 0.95);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+button:disabled {
+    opacity: 0.75;
+    cursor: default;
+}
+
+
+/* --- Score section ------------------------------------------------------------------------------------------------*/
+
+.scoreContainer {
+    /*background-color: indigo;*/
+    grid-area: scoreContainer;
+    width: auto;
+    height: auto;
+}
+
+.pointsRow {
+    display: grid;
+    width: auto;
+    height: calc(100% / 15);
+
+    grid-template-columns: auto 12% 14% 15% 15% 15%;
+    /*grid-template-columns: auto auto auto auto auto auto;*/
+    grid-template-rows: auto;
+    grid-template-areas:
+        "col1 col2 col3 col4 col5 col6";
+}
+
+.col1 {
+    grid-area: col1;
+}
+
+.col2 {
+    grid-area: col2;
+}
+
+.col3 {
+    grid-area: col3;
+}
+
+.col4 {
+    grid-area: col4;
+}
+
+.col5 {
+    grid-area: col5;
+}
+
+.col6 {
+    grid-area: col6;
+}
+
+.col1, .col2, .col3, .col4, .col5, .col6 {
+    /*background-color: yellow;*/
+    border: 0px solid red;
+    display: grid;
+    align-items: center;
+    margin: 0px 0px;
+    padding: 0px 1px;
+}
+
+.col3, .col5 {
+    justify-content: right;
+    padding-right: 5px;
+}
+
+/**
+Points labels.
+ */
+.pointsRow .col1 {
+    /*cursor: pointer;*/
+}
+
+/* --- Input fields --- */
+.inpPoints {
+    width: 40px;
+    height: auto;
+    border: 2px ridge rgba(150, 150, 150, 1.00);
+    border-radius: 3px;
+    font-size: 11pt;
+    color: #ffffff;
+    text-align: left;
+
+}
+
+.inpPoints.selectable {
+    background-color: rgb(0, 35, 0);
+    border-color: rgba(125, 125, 125, 1);
+    cursor: default;
+    /*text-align: center;*/
+}
+
+/**
+InpPoints hover (also triggered by hover on correspnding .pointsRow).
+ */
+.pointsRow .hover:hover, .pointsRow .hover:hover + div * {
+    border-color: rgba(175, 175, 175, 1.0);
+    cursor: pointer;
+}
+
+/**
+inpPoints selected.
+ */
+.inpPoints.committed {
+    background-color: rgb(40, 0, 0);
+    cursor: default;
+}
+
+/**
+Labels for selected inpPoints.
+ */
+.col1.committed {
+    cursor: default;
+}
+
+/**
+ */
+.inpPoints.sum, .inpPoints.bonus, .inpPoints.total {
+    background-color: #000000;
+    cursor: default;
+}
+

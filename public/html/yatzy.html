@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="dk">
+<head>
+    <title>Yatzy</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/gameOver.css"/>
+    <script defer src="/public/js/Main.js" type="text/javascript" charset="UTF-8"></script>
+    <script defer src="/public/js/Model.js" type="text/javascript" charset="UTF-8"></script>
+    <script defer src="/public/js/View.js" type="text/javascript" charset="UTF-8"></script>
+    <script defer src="/public/js/Controller.js" type="text/javascript" charset="UTF-8"></script>
+    <script type="text/javascript">
+        <!--
+        window.addEventListener("DOMContentLoaded", () => main());
+        -->
+    </script>
+</head>
+<body style="background-image: url('/public/images/backgrounds/background_01.jpg');">
+    <div id="pageWrapper">
+        <div class="guiContainer" style="background-image: url('/public/images/backgrounds/yahtzee_22.jpg');">
+            <div id="guiOverlay" data-state="hidden"></div>
+            <!-- Die container --------------------------------------------------------------------------------------->
+            <div class="diceContainer">
+                <!-- Dice columns -->
+                <div class="dieWrapper dieCol1">
+                    <img data-state="normal" data-cuedSrc="" id="imgDie1" src="/public/images/dice/blackEyes/0.png" />
+                </div>
+                 <div class="dieWrapper dieCol2">
+                    <img data-state="normal" data-cuedSrc="" id="imgDie2" src="/public/images/dice/blackEyes/0.png" />
+                </div>
+                 <div class="dieWrapper dieCol3">
+                     <img data-state="normal" data-cuedSrc="" id="imgDie3" src="/public/images/dice/blackEyes/0.png" />
+                </div>
+                 <div class="dieWrapper dieCol4">
+                    <img data-state="normal" data-cuedSrc="" id="imgDie4" src="/public/images/dice/blackEyes/0.png" />
+                </div>
+                 <div class="dieWrapper dieCol5">
+                     <img data-state="normal" data-cuedSrc="" id="imgDie5" src="/public/images/dice/blackEyes/0.png" />
+                </div>
+                <!-- Roll control column -->
+                <div class="rollControl">
+                    <div class="rollCol1">
+                        Rolls:
+                    </div>
+                    <div id="rollsRemaining" class="rollCol2">
+                        &nbsp;
+                    </div>
+                    <div class="rollCol3">
+                        <button type="button" id="btnRoll" class="button">Roll!</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Points Container ------------------------------------------------------------------------------------->
+            <!--
+            Note:
+            To prevent selection of text in input elements by click+drag,
+            "onmousedown" is added to every input element.
+            This doesn't work, if false is returned via attached event listener.
+            -->
+            <div id="scoreContainer" class="scoreContainer">
+                <!-- Points : Upper Section --->
+                <div class="pointsRow">
+                    <div class="col1" data-category="ones">
+                        Ones
+                    </div>
+                     <div class="col2">
+                        <input id="ones" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                     <div class="col3"></div>
+                     <div class="col4"></div>
+                     <div class="col5"></div>
+                     <div class="col6"></div>
+                </div>
+                 <div class="pointsRow">
+                    <div class="col1" data-category="twos">
+                        Twos
+                    </div>
+                     <div class="col2">
+                        <input id="twos" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                     <div class="col3"></div>
+                     <div class="col4"></div>
+                     <div class="col5"></div>
+                     <div class="col6"></div>
+                </div>
+                 <div class="pointsRow">
+                    <div class="col1" data-category="threes">
+                        Threes
+                    </div>
+                     <div class="col2">
+                        <input id="threes" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                     <div class="col3"></div>
+                     <div class="col4"></div>
+                     <div class="col5"></div>
+                     <div class="col6"></div>
+                </div>
+                 <div class="pointsRow">
+                    <div class="col1" data-category="fours">
+                        Fours
+                    </div>
+                     <div class="col2">
+                        <input id="fours" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                     <div class="col3"></div>
+                     <div class="col4"></div>
+                     <div class="col5"></div>
+                     <div class="col6"></div>
+                </div>
+                <div class="pointsRow">
+                    <div class="col1" data-category="fives">
+                        Fives
+                    </div>
+                    <div class="col2">
+                        <input id="fives" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                <div class="pointsRow">
+                    <div class="col1" data-category="sixes">
+                        Sixes
+                    </div>
+                     <div class="col2">
+                        <input id="sixes" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                     <div class="col3">
+                         Sum:
+                     </div>
+                     <div class="col4">
+                          <input tabindex="-1" id="upperSectionSum" class="inpPoints sum" type="text" value="" onmousedown="return false;" readonly />
+                     </div>
+                     <div class="col5">
+                         Bonus:
+                     </div>
+                     <div class="col6">
+                           <input tabindex="-1" id="bonus" class="inpPoints bonus" type="text" value="" onmousedown="return false;" readonly />
+                     </div>
+                </div>
+                <!-- Points : Lower Section --->
+                   <div class="pointsRow">
+                    <div class="col1" data-category="onePair">
+                        One pair
+                    </div>
+                    <div class="col2">
+                        <input id="onePair" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="twoPairs">
+                        Two pairs
+                    </div>
+                    <div class="col2">
+                        <input id="twoPairs" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="threeOfAKind">
+                        Three of a kind
+                    </div>
+                    <div class="col2">
+                        <input id="threeOfAKind" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="fourOfAKind">
+                        Four of a kind
+                    </div>
+                    <div class="col2">
+                        <input id="fourOfAKind" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="fullHouse">
+                        Full house
+                    </div>
+                    <div class="col2">
+                        <input id="fullHouse" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="smallStraight">
+                        Small straight
+                    </div>
+                    <div class="col2">
+                        <input id="smallStraight" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="largeStraight">
+                        Large straight
+                    </div>
+                    <div class="col2">
+                        <input id="largeStraight" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="chance">
+                        Chance
+                    </div>
+                    <div class="col2">
+                        <input id="chance" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3"></div>
+                    <div class="col4"></div>
+                    <div class="col5"></div>
+                    <div class="col6"></div>
+                </div>
+                   <div class="pointsRow">
+                    <div class="col1" data-category="yahtzee">
+                        Yahtzee
+                    </div>
+                    <div class="col2">
+                        <input id="yahtzee" class="inpPoints selectable" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col3">
+                        Sum:
+                    </div>
+                    <div class="col4">
+                        <input tabindex="-1" id="lowerSectionSum" class="inpPoints sum" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                    <div class="col5">
+                        Total:
+                    </div>
+                    <div class="col6">
+                        <input tabindex="-1" id="total" class="inpPoints total" type="text" value="" onmousedown="return false;" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pageOverlay"></div>
+    <!-- Game Over modal prompt -------------------------------------------------------------------------------------->
+    <div id="mp_outerWrapper">
+        <div id="mp_innerWrapper">
+            <div id="mp_container" data-state="hidden" style="background-image: url('/public/images/backgrounds/yahtzee_20.jpg');">
+                <div id="mp_gameOver">
+                    <div class="mp_headerContainer">
+                        <div id="mp_header">
+                            Game Ove<span >r</span>
+                        </div>
+                    </div>
+                    <div class="mp_scoreLabel">
+                        Your total score was:
+                    </div>
+                    <div class="mp_scoreValue">
+                        <span id="mp_totalDigit_1"></span><span id="mp_totalDigit_2"></span><span id="mp_totalDigit_3"></span><span id="mp_totalDigit_4">0</span>
+                        points
+                    </div>
+                    <div class="mp_callToAction">
+                        <button id="mp_btnPlayAgain">Play again?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

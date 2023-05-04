@@ -1,0 +1,118 @@
+/**
+Styling for Game Over modal prompt.
+*/
+
+#pageOverlay {
+    background-color: #000000;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    transition: opacity 600ms ease 0ms;
+    z-index: 999;
+}
+
+#mp_outerWrapper {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: none; /* Set to "grid" when displayed. */
+    place-items: center;
+    opacity: 1;
+    z-index: 1000;
+}
+
+#mp_innerWrapper {
+    position: relative;
+    width: 700px;
+    height: 500px;
+    padding: 10px;
+}
+
+#mp_container {
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #222222;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-size: 700px;
+    background-position: 40px -100px; /* -25px -100px */
+    box-shadow: 15px 20px 20px 5px rgba(0, 0, 0, .50);
+    user-select: none;
+    opacity: 0; /* We'll transition to fully opaque on display of modal prompt. */
+    transition-property: opacity;
+    transition-delay: 0ms;
+    transition-timing-function: ease;
+}
+
+#mp_gameOver {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000000;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "header header"
+        "scoreLabel scoreValue"
+        "callToAction callToAction";
+
+    padding-top: 130px;
+    padding-bottom: 100px;
+    font-size: 20pt;
+}
+
+.mp_headerContainer {
+    grid-area: header;
+    font-size: 30pt;
+    font-weight: bold;
+    position: relative;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+#mp_header {
+    background-color: transparent;
+    position: absolute;
+    white-space: nowrap;
+    letter-spacing: 350px;
+    transition: letter-spacing 750ms ease 0ms;
+}
+
+#mp_header span {
+    letter-spacing: normal;
+}
+
+.mp_scoreLabel {
+    grid-area: scoreLabel;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.mp_scoreValue {
+    grid-area: scoreValue;
+}
+
+.mp_callToAction {
+    display: grid;
+    grid-area: callToAction;
+    place-items: end center;
+
+}
+
+#mp_btnPlayAgain {
+    width: 40%;
+    height: 40px;
+}
+
