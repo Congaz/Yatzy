@@ -95,7 +95,7 @@ export class View {
     static self = this;
 
     constructor() {
-        this.#dieImageDir = "/public/images/dice/blackEyes/";
+        this.#dieImageDir = "images/dice/blackEyes/";
         this.#resolveElmIds(this.#elms);
         this.#attachListeners();
     }
