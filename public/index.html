@@ -4,39 +4,31 @@
     <title>Yatzy</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" type="text/css" href="/public/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/public/css/gameOver.css"/>
-    <script defer src="/public/js/Main.js" type="text/javascript" charset="UTF-8"></script>
-    <script defer src="/public/js/Model.js" type="text/javascript" charset="UTF-8"></script>
-    <script defer src="/public/js/View.js" type="text/javascript" charset="UTF-8"></script>
-    <script defer src="/public/js/Controller.js" type="text/javascript" charset="UTF-8"></script>
-    <script type="text/javascript">
-        <!--
-        window.addEventListener("DOMContentLoaded", () => main());
-        -->
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/gameOver.css"/>
+    <script defer src="js/main.js" type="module" charset="UTF-8"></script>
 </head>
-<body style="background-image: url('/public/images/backgrounds/background_01.jpg');">
+<body style="background-image: url('images/backgrounds/background_01.jpg');">
     <div id="pageWrapper">
-        <div class="guiContainer" style="background-image: url('/public/images/backgrounds/yahtzee_22.jpg');">
+        <div class="guiContainer" style="background-image: url('images/backgrounds/yahtzee_22.jpg');">
             <div id="guiOverlay" data-state="hidden"></div>
             <!-- Die container --------------------------------------------------------------------------------------->
             <div class="diceContainer">
                 <!-- Dice columns -->
                 <div class="dieWrapper dieCol1">
-                    <img data-state="normal" data-cuedSrc="" id="imgDie1" src="/public/images/dice/blackEyes/0.png" />
+                    <img data-state="normal" data-cuedSrc="" id="imgDie1" src="images/dice/blackEyes/0.png" />
                 </div>
                  <div class="dieWrapper dieCol2">
-                    <img data-state="normal" data-cuedSrc="" id="imgDie2" src="/public/images/dice/blackEyes/0.png" />
+                    <img data-state="normal" data-cuedSrc="" id="imgDie2" src="images/dice/blackEyes/0.png" />
                 </div>
                  <div class="dieWrapper dieCol3">
-                     <img data-state="normal" data-cuedSrc="" id="imgDie3" src="/public/images/dice/blackEyes/0.png" />
+                     <img data-state="normal" data-cuedSrc="" id="imgDie3" src="images/dice/blackEyes/0.png" />
                 </div>
                  <div class="dieWrapper dieCol4">
-                    <img data-state="normal" data-cuedSrc="" id="imgDie4" src="/public/images/dice/blackEyes/0.png" />
+                    <img data-state="normal" data-cuedSrc="" id="imgDie4" src="images/dice/blackEyes/0.png" />
                 </div>
                  <div class="dieWrapper dieCol5">
-                     <img data-state="normal" data-cuedSrc="" id="imgDie5" src="/public/images/dice/blackEyes/0.png" />
+                     <img data-state="normal" data-cuedSrc="" id="imgDie5" src="images/dice/blackEyes/0.png" />
                 </div>
                 <!-- Roll control column -->
                 <div class="rollControl">
@@ -264,7 +256,7 @@
     <!-- Game Over modal prompt -------------------------------------------------------------------------------------->
     <div id="mp_outerWrapper">
         <div id="mp_innerWrapper">
-            <div id="mp_container" data-state="hidden" style="background-image: url('/public/images/backgrounds/yahtzee_20.jpg');">
+            <div id="mp_container" data-state="hidden" style="background-image: url('images/backgrounds/yahtzee_20.jpg');">
                 <div id="mp_gameOver">
                     <div class="mp_headerContainer">
                         <div id="mp_header">

@@ -1,6 +1,5 @@
-"use strict";
 
-class Model
+export class Model
 {
     #NUM_OF_DICE
     #NUM_OF_SIDES

@@ -1,6 +1,6 @@
-"use strict";
+import {Controller} from "./Controller.js";
 
-class View {
+export class View {
     #elms = {
         gameOverPrompt: {
             mp_outerWrapper: null,

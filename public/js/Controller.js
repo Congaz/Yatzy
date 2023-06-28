@@ -1,6 +1,7 @@
-"use strict";
+import {Model} from "./Model.js";
+import {View} from "./View.js";
 
-class Controller
+export class Controller
 {
     #model;
     #view;
